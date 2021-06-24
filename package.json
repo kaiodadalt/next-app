@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next --port 8080",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "build-stats": "ANALYZE=true npm run build",
+    "export": "next export -o dist",
+    "build-prod": "run-s clean build export",
+    "clean": "rimraf .next dist",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
     "next": "11.0.1",
@@ -15,6 +19,7 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^11.0.1",
     "@types/react": "17.0.11",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
